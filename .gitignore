@@ -145,3 +145,5 @@ vite.config.ts.timestamp-*
 playwright-report/
 test-results/
 .env
+
+test-data/last-booking-id.json
