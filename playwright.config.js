@@ -1,28 +1,23 @@
 // @ts-check
-import { defineConfig, devices } from '@playwright/test';
+const { defineConfig } = require('@playwright/test');
 
-export default defineConfig({
+// Load variables from .env
+require('dotenv').config();
+
+module.exports = defineConfig({
   testDir: './tests',
-  fullyParallel: true,
-  forbidOnly: !!process.env.CI,
-  retries: process.env.CI ? 2 : 0,
-  workers: process.env.CI ? 1 : undefined,
-  reporter: 'html',
-
   use: {
-    /* Make sure the URL starts with https:// and has no extra spaces */
-    baseURL: 'https://restful-booker.herokuapp.com',
+    /* Use the variable from .env */
+    baseURL: process.env.BASE_URL || 'https://herokuapp.com',
     extraHTTPHeaders: {
       'Accept': 'application/json',
     },
-    trace: 'on-first-retry',
   },
-
-
-  /* We only need one "project" for API tests to keep it clean */
+  /* One project for API tests */
   projects: [
     {
       name: 'api-tests',
     },
   ],
-});
+}); // This is the ONLY closing bracket needed for the whole block
+
