@@ -15,5 +15,5 @@ jobs:
     - name: Run Playwright tests
       env:
         # This acts as your "Cloud .env" file
-        BASE_URL: https://herokuapp.com
+        BASE_URL: https://restful-booker.herokuapp.com
       run: npx playwright test
